@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="fr.polytech.soakillers.soa.sales">
+    <flow SubFlow="false" name="fr.polytech.soakillers.soa.salesFlow1" entity-id="80ba7b08-ae10-4759-af8e-9187d27b4b6e">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="50090619-1a49-435b-8d22-7f788d928990">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/https/endpoint" entity-id="a8a6b0ba-273e-462b-8b1f-9a9a9adca13a">
+                <graphicalData x="19" y="105" width="68" height="240"/>
+                <properties>
+                    <property name="exchange-pattern" value="request-response"/>
+                </properties>
+            </endpoint>
+            <pattern name="TeamForce CRM" type="http://www.mulesoft.org/schema/mule/jersey/resources" entity-id="c5c8f8b7-a25d-4f0e-8a50-b2a721e1ed47">
+                <graphicalData x="147" y="105" width="102" height="240"/>
+                <properties>
+                    <property name="ref" value=""/>
+                    <property name="updated"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;1041613090">
+                        <property name="ref" value=""/>
+                        <property name="isProcessed$$$$" value="true"/>
+                    </property-collection>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern name="Warehouse" type="http://www.mulesoft.org/schema/mule/jersey/resources" entity-id="f819f1d9-25d6-4647-92ed-e0d59df36629">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="ref" value=""/>
+                    <property name="auxiliary;moved-from"/>
+                    <property name="updated"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;880479126">
+                        <property name="ref" value=""/>
+                        <property name="isProcessed$$$$" value="true"/>
+                    </property-collection>
+                </properties>
+                <description></description>
+            </pattern>
+            <splitter index="0" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="90de1b8c-1b8b-4d61-8591-123672f1d95f">
+                <graphicalData x="309" y="36" width="250" height="207"/>
+                <properties>
+                    <property name=";INDEX" value="0"/>
+                </properties>
+                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="904e8ee7-aa03-4a1b-903c-c13fb691203d">
+                    <properties>
+                        <property name=";INDEX" value="0"/>
+                    </properties>
+                </pattern>
+                <compartment entity-id="33e7c635-8d58-474e-8ebb-fc1f398dad55">
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="aba130e2-e16d-4c4f-9e10-def712272f53">
+                        <pattern name="Fournisseur1" type="http://www.mulesoft.org/schema/mule/jersey/resources" entity-id="db3688f1-ecaa-4132-810a-fb3f07d5a42a">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="ref" value=""/>
+<property name="updated"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/refInterceptorStackType;1718840780">
+    <property name="ref" value=""/>
+    <property name="isProcessed$$$$" value="true"/>
+</property-collection>
+                            </properties>
+                            <description></description>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="029abbe2-9ece-4cf2-a034-261ec834834b">
+                        <pattern name="Exception" type="http://www.mulesoft.org/schema/mule/core/exception-type-filter" entity-id="2b1ae6c4-5094-4112-96e4-72f02a7cce22">
+                            <graphicalData x="600" y="150" width="68" height="69"/>
+                        </pattern>
+                    </lane>
+                </compartment>
+            </splitter>
+        </lane>
+        <apikit>false</apikit>
+    </flow>
+    <description></description>
+</mule-configuration>
