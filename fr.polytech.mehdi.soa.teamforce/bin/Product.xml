@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+	<product product_id="1">
+		<product_name>g-star</product_name>
+		<product_quantity>150</product_quantity>
+	</product>
+
+	<product product_id="2">
+		<product_name>pepe jeans</product_name>
+		<product_quantity>150</product_quantity>
+	</product>
+
+	<product product_id="3">
+		<product_name>levis</product_name>
+		<product_quantity>186</product_quantity>
+	</product>
+
+	<product product_id="4">
+		<product_name>lacost</product_name>
+		<product_quantity>75</product_quantity>
+	</product>
+
+	<product product_id="5">
+		<product_name>tommy</product_name>
+		<product_quantity>150</product_quantity>
+	</product>
+
+	<product product_id="6">
+		<product_name>zara</product_name>
+		<product_quantity>36</product_quantity>
+	</product>
+
+	<product product_id="7">
+		<product_name>Celio</product_name>
+		<product_quantity>136</product_quantity>
+	</product>
+
+</products>

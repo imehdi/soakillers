@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orders>
+	<order order_id="1">
+		<account>1</account>
+		<date></date>
+		<products>
+			<product>5</product>
+			<product>2</product>
+		</products>
+		<treated>true</treated>
+	</order>
+	<order order_id="2">
+		<account>2</account>
+		<date></date>
+		<products>
+			<product>2</product>
+			<product>7</product>
+			<product>1</product>
+		</products>
+		<treated>false</treated>
+	</order>
+	<order order_id="3">
+		<account>1</account>
+		<date></date>
+		<products>
+			<product>5</product>
+		</products>
+		<treated>true</treated>
+	</order>
+
+</orders>

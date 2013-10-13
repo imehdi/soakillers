@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<customers>
+	<customer customer_id="1">
+
+		<customer_name>Mohamed</customer_name>
+		<customer_lastName>AIDOUDI</customer_lastName>
+		<customer_gender>M</customer_gender>
+		<customer_age>29</customer_age>
+		<address>2</address>
+	</customer>
+
+	<customer customer_id="2">
+
+		<customer_name>Mehdi</customer_name>
+		<customer_lastName>IDOUDI</customer_lastName>
+		<customer_gender>M</customer_gender>
+		<customer_age>1</customer_age>
+		<address>1</address>
+	</customer>
+
+</customers>

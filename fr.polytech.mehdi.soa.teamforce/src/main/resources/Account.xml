@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<accounts>
+	<account account_id="1">
+		<customer>1</customer>
+		<products>
+			<product>2</product>
+			<product>7</product>
+		</products>
+	</account>
+	<account account_id="1">
+		<customer>2</customer>
+		<products>
+			<product>3</product>
+			<product>6</product>
+		</products>
+	</account>
+</accounts>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogues>
+	<catalogue catalogue_id="1">
+		<catalogue_name>jeans</catalogue_name>
+		<products>
+			<product>1</product>
+
+			<product>2</product>
+
+			<product>3</product>
+		</products>
+	</catalogue>
+
+	<catalogue id="2">
+		<catalogue_name>t-shirts</catalogue_name>
+		<products>
+			<product>4</product>
+
+			<product>5</product>
+
+			<product>6</product>
+
+			<product>7</product>
+		</products>
+	</catalogue>
+</catalogues>

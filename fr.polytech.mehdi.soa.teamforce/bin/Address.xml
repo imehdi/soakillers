@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addressList>
+	<address id_address="1">
+		<city>Cote d'azure</city>
+		<country>France</country>
+		<town>Antibes</town>
+		<number>670</number>
+		<street_name>1ère Avenue</street_name>
+	</address>
+
+	<address id_address="2">
+
+		<city>Ariana</city>
+		<country>Tunisia</country>
+		<town>ElGhazela</town>
+		<number>12</number>
+		<street_name>Résidence Nader</street_name>
+
+	</address>
+</addressList>
