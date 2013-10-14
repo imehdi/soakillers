@@ -7,5 +7,5 @@ public enum CATEGORY {
 	spirituous,
 	soda,
 	water,
-	juice
+	juice 
 }
