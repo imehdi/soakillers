@@ -4,26 +4,25 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 
+import exception.DeliveryFault;
+
+import message.DeliveryIdMessage;
+import message.DeliveryRequest;
+import message.TraceResponse;
 
 public interface ServiceDN {
 
 	@WebMethod
-	@WebResult(name="response")
-	public DeliveryResponse delivery(@WebParam(name="token", header=true)  String token,
-								@WebParam(name="mesage") DeliveryRequest request);
-	
+	@WebResult(name = "response")
+	public DeliveryIdMessage delivery (
+			@WebParam(name = "mesage") DeliveryRequest request) throws DeliveryFault;
+
 	@WebMethod
-	@WebResult(name="quoteId")
-	public String askQuote(@WebParam(name="token", header=true)  String token,
-								@WebParam(name="deliveryId")  String deliveryId);
-	
+	@WebResult(name = "quoteId")
+	public String askQuote(@WebParam(name = "deliveryId") String deliveryId) throws DeliveryFault;
+
 	@WebMethod
-	@WebResult(name="trace")
-	public TraceResponse trace(@WebParam(name="token", header=true)  String token,
-								@WebParam(name="quoteId")  String quoteId);
-	
-	
-	@WebMethod
-	public String getToken(@WebParam(name="login") String username,
-							@WebParam(name="pwd") String password);
+	@WebResult(name = "trace")
+	public TraceResponse trace(@WebParam(name = "quoteId") String quoteId) throws DeliveryFault;
+
 }

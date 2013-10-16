@@ -1,9 +1,9 @@
-package fr.unice.polytech.si5.SOA;
+package message;
 
 import javax.xml.bind.annotation.*;
 
-@XmlType(name="DeliveryResponse")
-public class DeliveryResponse {
+@XmlType(name="DeliveryIdMessage")
+public class DeliveryIdMessage {
 
 	@XmlElement(required=true, name="delivery_id")
 	public String delivery_id;

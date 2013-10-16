@@ -1,4 +1,4 @@
-package fr.unice.polytech.si5.SOA;
+package message;
 
 import javax.xml.bind.annotation.*;
 
