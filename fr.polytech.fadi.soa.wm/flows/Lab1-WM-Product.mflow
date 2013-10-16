@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="Lab1-WM-Product">
+    <flow SubFlow="false" name="Lab1-WM-ProductAmountFlow1" entity-id="12090f2f-bf8a-4186-8f95-3f8a0eacf31e">
+        <properties>
+            <property name="processingStrategy"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="port" value="8083"/>
+                    <property name="auxiliary;erased;mimeType" value="true"/>
+                    <property name="contentType" value=""/>
+                    <property name="password" value=""/>
+                    <property name="tracking:enable-default-events" value="false"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="updated"/>
+                    <property name="auxiliary;erased;encoding" value="true"/>
+                    <property name="path" value="rest"/>
+                    <property name="encoding" value=""/>
+                    <property name="responseTransformer-refs" value=""/>
+                    <property name="auxiliary;index" value="2"/>
+                    <property name="mimeType" value=""/>
+                    <property name="responseTimeout" value="10000"/>
+                    <property name="auxiliary;erased;contentType" value="true"/>
+                    <property name="host" value="localhost"/>
+                    <property name="businessEventsLabel" value=""/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                    <property name="keep-alive" value="false"/>
+                    <property name="disableTransportTransformer" value="false"/>
+                    <property name="ref" value=""/>
+                    <property name="transformer-refs" value=""/>
+                    <property name="httpLabel" value=""/>
+                    <property name="address" value=""/>
+                    <property name="user" value=""/>
+                    <property name="connector-ref" value=""/>
+                </properties>
+                <description></description>
+            </endpoint>
+            <pattern name="REST" type="http://www.mulesoft.org/schema/mule/jersey/resources" entity-id="REST#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="auxiliary;index" value="3"/>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/core/component;0">
+                        <property name="class" value="fr.unice.polytech.si5.soa1.wm.services.ProductServices"/>
+                        <property name="isProcessed$$$$" value="true"/>
+                        <property name="auxiliary;index" value="4"/>
+                        <property name="auxiliary;wrapIn" value="4"/>
+                    </property-collection>
+                </properties>
+            </pattern>
+        </lane>
+        <apikit>false</apikit>
+    </flow>
+    <description></description>
+</mule-configuration>
