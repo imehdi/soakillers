@@ -11,6 +11,14 @@ import javax.ws.rs.core.Response;
 @Path("product")
 public class ProductServices {
 
+	ProductServicesImpl pSI;
+	ProductOperationServicesImpl pOSI;
+
+	public ProductServices() {
+		pSI = new ProductServicesImpl();
+		pOSI = new ProductOperationServicesImpl();
+	}
+
 	// This method is used to perform an operation on a product (suppling,
 	// pickups)
 	@POST
@@ -18,8 +26,7 @@ public class ProductServices {
 	@Consumes("text/json")
 	@Produces("text/json")
 	public Response performProductOperation(String json) {
-		Response r = ProductServicesImpl.performProductOperationImpl(json);
-		return r;
+		return pOSI.performProductOperationImpl(json);
 	}
 
 	// This method return all the informations of a given product id.
@@ -28,8 +35,7 @@ public class ProductServices {
 	@Consumes("text/json")
 	@Produces("text/json")
 	public Response getProductsInformations(String json) {
-		Response r = ProductServicesImpl.getProductsInformationsImpl(json);
-		return r;
+		return pSI.getProductsInformationsImpl(json);
 	}
 
 	// This method return the location of a given product id.
@@ -37,15 +43,15 @@ public class ProductServices {
 	@Path("/location/{productId}")
 	@Produces("text/json")
 	public Response getProductLocation(@PathParam("productId") Long productId) {
-		return ProductServicesImpl.getProductLocationImpl(productId);
+		return pSI.getProductLocationImpl(productId);
 	}
-	
+
 	// This method return the out of stock products.
 	@GET
 	@Path("/nearlyoutofstock/")
 	@Produces("text/json")
 	public Response getNearlyOutOfStockProducts() {
-		return ProductServicesImpl.getNearlyOutOfStockProducts();
+		return pSI.getNearlyOutOfStockProducts();
 	}
 
 	/*
@@ -58,6 +64,6 @@ public class ProductServices {
 	@Produces("text/json")
 	public Response getProductsToDeliver(
 			@PathParam("numberOfDays") int numberOfDays) {
-		return ProductServicesImpl.getProductsToDeliver(numberOfDays);
+		return pOSI.getProductsToDeliver(numberOfDays);
 	}
 }
