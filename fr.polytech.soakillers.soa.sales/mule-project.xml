@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<mule-project xmlns="http://www.mulesoft.com/tooling/project" runtimeId="org.mule.tooling.server.3.4.EE">
-    <name>fr.polytech.soakillers.soa.sales</name>
-    <description></description>
+<mule-project xmlns="http://www.mulesoft.com/tooling/project">
+    <muleExtension name="Facebook" qualifier="org.mule.tooling.ui.contribution.facebook"/>
 </mule-project>

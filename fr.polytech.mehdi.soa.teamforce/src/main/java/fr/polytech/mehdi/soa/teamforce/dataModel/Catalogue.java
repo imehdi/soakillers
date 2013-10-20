@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 
-// @Entity
+
 @XmlRootElement
 public class Catalogue {
 
@@ -26,8 +26,7 @@ public class Catalogue {
 		products = new ArrayList<Product>();
 	}
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	
 	public int getCatalogue_id() {
 		return catalogue_id;
 	}
@@ -44,7 +43,7 @@ public class Catalogue {
 		this.catalogue_name = catalogue_name;
 	}
 
-	// @OneToMany
+	
 	public List<Product> getProducts() {
 		return products;
 	}

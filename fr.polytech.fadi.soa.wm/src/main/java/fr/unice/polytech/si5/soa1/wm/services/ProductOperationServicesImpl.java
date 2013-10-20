@@ -19,56 +19,57 @@ import fr.unice.polytech.si5.soa1.wm.model.ProductOperation;
 import fr.unice.polytech.si5.soa1.wm.model.ProductOperationExceptions;
 
 public class ProductOperationServicesImpl {
-   
-    String productsYAKLocation;
-    String productsOperationsYAKLocation;
 
-    ObjectContainer dbProducts;
-    ObjectContainer dbProductsOperations;
-	
-    ProductFacade pF;
-    ProductOperationFacade pOF;
-	
-    public ProductOperationServicesImpl() {
+	String productsYAKLocation;
+	String productsOperationsYAKLocation;
 
-    }
-    
-    public void contextInitialized() {
-    	productsYAKLocation = "yak-data/products-yak-data.yak";
-    	productsOperationsYAKLocation = "yak-data/products-operations-yak-data.yak";
-    	
-    	dbProducts = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), productsYAKLocation);
-    	dbProductsOperations = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(), productsOperationsYAKLocation);
-    	
-    	pF = new ProductFacade(dbProducts);
-    	pOF = new ProductOperationFacade(dbProductsOperations);
-    }
+	ObjectContainer dbProducts;
+	ObjectContainer dbProductsOperations;
 
-    public void contextDestroyed() {
-        dbProducts.close();
-        dbProductsOperations.close();
-    }
-	
+	ProductFacade pF;
+	ProductOperationFacade pOF;
+
+	public ProductOperationServicesImpl() {
+
+	}
+
+	public void contextInitialized() {
+		productsYAKLocation = "yak-data/products-yak-data.yak";
+		productsOperationsYAKLocation = "yak-data/products-operations-yak-data.yak";
+
+		dbProducts = Db4oEmbedded.openFile(Db4oEmbedded.newConfiguration(),
+				productsYAKLocation);
+		dbProductsOperations = Db4oEmbedded.openFile(
+				Db4oEmbedded.newConfiguration(), productsOperationsYAKLocation);
+
+		pF = new ProductFacade(dbProducts);
+		pOF = new ProductOperationFacade(dbProductsOperations);
+	}
+
+	public void contextDestroyed() {
+		dbProducts.close();
+		dbProductsOperations.close();
+	}
+
 	public String performProductOperationFromJSON(JSONObject obj)
 			throws JSONException, ProductOperationExceptions, ParseException {
 		this.contextInitialized();
-		
+
 		ProductOperation oP = new ProductOperation(obj.getString("company"),
 				pF.find((long) obj.getInt("productId")),
 				Boolean.parseBoolean(obj.getString("consume")),
 				obj.getInt("quantity"), obj.getString("orderDate"));
 		pOF.create(oP);
-		
+
 		this.contextDestroyed();
-		
+
 		return oP.toJson();
 	}
-	
 
 	public Response performProductOperationImpl(String json) {
 		try {
-			String jsonOut = this.performProductOperationFromJSON(new JSONObject(
-					json));
+			String jsonOut = this
+					.performProductOperationFromJSON(new JSONObject(json));
 			return Response.status(Status.OK).entity(jsonOut).build();
 		} catch (Exception e) {
 			return Response.status(Status.BAD_REQUEST).build();
@@ -77,7 +78,7 @@ public class ProductOperationServicesImpl {
 
 	public Response getProductsToDeliver(int numberOfDays) {
 		this.contextInitialized();
-		
+
 		Calendar currentCal = Calendar.getInstance();
 		Date currentDate = currentCal.getTime();
 
@@ -112,7 +113,7 @@ public class ProductOperationServicesImpl {
 		String finalResp = respBegin + resp + respEnd;
 
 		this.contextDestroyed();
-		
+
 		if (checkFound == 0) {
 			return Response.status(Status.NOT_FOUND).build();
 		} else {

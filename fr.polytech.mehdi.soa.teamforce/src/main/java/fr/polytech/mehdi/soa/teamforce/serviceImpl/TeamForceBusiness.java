@@ -75,7 +75,6 @@ public class TeamForceBusiness {
 		order.setDate(new Date());
 		order.setOrder_id(new Random().nextInt());
 		order.setTreated(false);
-
 		factory.getOrders().add(order);
 		orderResponse.order = order;
 		return orderResponse;
@@ -90,7 +89,7 @@ public class TeamForceBusiness {
 			for (Product prod : factory.getProducts()) {
 
 				if (prod.getProduct_id() == products_id[i]) {
-
+					prod.setProduct_quantity(prod.getProduct_quantity() - 1);
 					products.add(prod);
 					break;
 				}

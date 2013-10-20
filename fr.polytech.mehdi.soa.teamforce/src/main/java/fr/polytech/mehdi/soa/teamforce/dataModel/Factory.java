@@ -38,13 +38,13 @@ public class Factory {
 
 		// products
 
-		Product product1 = new Product(1, "G-StAR", 150);
-		Product product2 = new Product(2, "pepe jeans", 150);
-		Product product3 = new Product(3, "levis", 186);
-		Product product4 = new Product(4, "Lacost", 75);
-		Product product5 = new Product(5, "Tommy", 150);
-		Product product6 = new Product(6, "Zara", 36);
-		Product product7 = new Product(7, "Celio", 136);
+		Product product1 = new Product(1, "G-StAR", 150 , 78);
+		Product product2 = new Product(2, "pepe jeans", 150 , 65);
+		Product product3 = new Product(3, "levis", 186 , 92);
+		Product product4 = new Product(4, "Lacost", 75 , 36 );
+		Product product5 = new Product(5, "Tommy", 150 , 69);
+		Product product6 = new Product(6, "Zara", 36 , 19);
+		Product product7 = new Product(7, "Celio", 136 , 23);
 		products.add(product7);
 		products.add(product6);
 		products.add(product5);

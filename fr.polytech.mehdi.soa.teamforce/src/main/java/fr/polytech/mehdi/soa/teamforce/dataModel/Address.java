@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 
-// @Entity
 @XmlRootElement
 public class Address {
 
@@ -37,8 +36,7 @@ public class Address {
 		this.number = number;
 	}
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	
 	public int getId_address() {
 		return id_address;
 	}

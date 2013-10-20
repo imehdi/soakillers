@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 
-// @Entity
+
 @XmlRootElement
 public class Customer {
 
@@ -70,8 +70,7 @@ public class Customer {
 		this.customer_gender = customer_gender;
 	}
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+	
 	public double getCustomer_id() {
 		return customer_id;
 	}
@@ -80,7 +79,7 @@ public class Customer {
 		this.customer_id = customer_id;
 	}
 
-	// @OneToOne
+	
 	public Address getAddress() {
 		return address;
 	}

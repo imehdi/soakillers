@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * 
  */
 
-// @Entity
+
 @XmlRootElement
 public class Order {
 
@@ -31,8 +31,7 @@ public class Order {
 
 	}
 
-	// @Id
-	// @GeneratedValue(strategy = GenerationType.AUTO)
+
 	public int getOrder_id() {
 		return order_id;
 	}
@@ -41,7 +40,7 @@ public class Order {
 		this.order_id = order_id;
 	}
 
-	// @OneToOne
+	
 	public Account getAccount() {
 		return account;
 	}

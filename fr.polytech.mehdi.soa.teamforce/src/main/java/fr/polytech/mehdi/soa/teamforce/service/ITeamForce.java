@@ -20,7 +20,6 @@ import fr.polytech.mehdi.soa.teamforce.messages.OrderResponse;
 @WebService(name = "teamforce")
 public interface ITeamForce {
 
-	// @Oneway
 	@WebMethod
 	public CustomerResponse addCustomer(
 			@WebParam(name = "Customer") CustomerRequest customerRequest);

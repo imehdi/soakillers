@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="fr.polytech.soakillers.soa.misterGoodDeal">
+    <flow SubFlow="false" name="fr.polytech.soakillers.soa.salesFlow1" entity-id="d4680821-9ecd-4957-9abb-d7b16afa99d1">
+        <properties>
+            <property name="processingStrategy"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <multi-source index="0" name="Composite Source" type="http://www.mulesoft.org/schema/mule/core/composite-source" entity-id="Composite Source#1">
+                <graphicalData x="19" y="155" width="104" height="98"/>
+                <properties>
+                    <property name="auxiliary;index" value="2"/>
+                </properties>
+                <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
+                    <graphicalData x="0" y="0" width="0" height="0"/>
+                    <properties>
+                        <property name="port" value="8081"/>
+                        <property name="host" value="localhost"/>
+                        <property name="businessEventsLabel"/>
+                        <property name="followRedirects"/>
+                        <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                        <property name="keep-alive"/>
+                        <property name="contentType"/>
+                        <property name="disableTransportTransformer"/>
+                        <property name="password"/>
+                        <property name="exchange-pattern" value="request-response"/>
+                        <property name="tracking:enable-default-events"/>
+                        <property name="ref"/>
+                        <property name="transformer-refs"/>
+                        <property name="httpLabel"/>
+                        <property name="address"/>
+                        <property name="path"/>
+                        <property name="encoding"/>
+                        <property name="responseTransformer-refs"/>
+                        <property name="method"/>
+                        <property name="user"/>
+                        <property name="auxiliary;index" value="3"/>
+                        <property name="responseTimeout"/>
+                        <property name="mimeType"/>
+                        <property name="connector-ref"/>
+                    </properties>
+                </endpoint>
+            </multi-source>
+            <pattern name="HTTP Response to Object" type="http://www.mulesoft.org/schema/mule/http/http-response-to-object-transformer" entity-id="147ba89b-e526-4db3-9bf2-5fc0f18622ff">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+            </pattern>
+        </lane>
+        <apikit>false</apikit>
+    </flow>
+    <description></description>
+</mule-configuration>
