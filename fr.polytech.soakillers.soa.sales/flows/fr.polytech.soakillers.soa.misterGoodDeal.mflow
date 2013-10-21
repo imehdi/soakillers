@@ -1,152 +1,226 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="fr.polytech.soakillers.soa.misterGoodDeal">
-    <flow SubFlow="false" name="misterGoodDealorder" entity-id="2677eef3-a1be-491b-b548-0f29a4a825ba">
-        <properties>
-            <property name="updated"/>
-            <property-collection name="@http://www.mulesoft.org/schema/mule/ee/tracking/transaction;1414553225">
-                <property name="isProcessed$$$$" value="true"/>
-            </property-collection>
-        </properties>
-        <description></description>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="d168c1e1-13fb-4232-a4be-1600e50688bd">
-            <graphicalData x="0" y="0" width="0" height="0"/>
-            <multi-source index="0" name="Composite Source" type="http://www.mulesoft.org/schema/mule/core/composite-source" entity-id="37131666-bd9a-42f8-ba93-21dbf2c11ad8">
-                <graphicalData x="19" y="91" width="104" height="172"/>
-                <description></description>
-                <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/https/endpoint" entity-id="0e539a77-839d-439f-9bc8-586980c7b311">
-                    <graphicalData x="26" y="61" width="68" height="69"/>
-                    <properties>
-                        <property name="exchange-pattern" value="request-response"/>
-                    </properties>
-                    <description></description>
-                </endpoint>
-                <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="FTP" type="http://www.mulesoft.org/schema/mule/ee/ftp/endpoint" entity-id="3079c8e5-79e6-406b-ba6c-a582bbee57e8">
-                    <graphicalData x="0" y="0" width="0" height="0"/>
-                    <properties>
-                        <property name="exchange-pattern" value="one-way"/>
-                    </properties>
-                    <description></description>
-                </endpoint>
-            </multi-source>
-            <pattern name="receive new order" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="385b8ae7-df02-4809-8c3d-ef4273acf92f">
-                <graphicalData x="374" y="143" width="107" height="69"/>
-                <properties>
-                    <property name="updated"/>
-                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cxf/jaxws-service"/>
-                    <property-collection name=""/>
-                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/schemaLocations;845823939">
-                        <property name="isProcessed$$$$" value="true"/>
-                    </property-collection>
-                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-security-full;1632097010">
-                        <property name="isProcessed$$$$" value="true"/>
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-config;860880544">
-                            <property name="isProcessed$$$$" value="true"/>
-                        </property-collection>
-                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-custom-validator;1715835218">
-                            <property name="isProcessed$$$$" value="true"/>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/bst-token-validator;944729127">
-<property name="isProcessed$$$$" value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml1-token-validator;1316935122">
-<property name="isProcessed$$$$" value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml2-token-validator;1762129472">
-<property name="isProcessed$$$$" value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/signature-token-validator;362420917">
-<property name="isProcessed$$$$" value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/timestamp-token-validator;163060127">
-<property name="isProcessed$$$$" value="true"/>
-                            </property-collection>
-                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/username-token-validator;1221973169">
-<property name="isProcessed$$$$" value="true"/>
-                            </property-collection>
-                        </property-collection>
-                    </property-collection>
-                </properties>
-                <description></description>
-            </pattern>
-            <pattern name="Check inventory" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="0c36ec95-5e2e-44a2-9e09-43bc644693f6">
-                <graphicalData x="541" y="143" width="100" height="69"/>
-                <properties>
-                    <property name="updated"/>
-                    <property name="name" value="checkInventory"/>
-                </properties>
-                <description></description>
-            </pattern>
-            <splitter index="0" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="eb6cc847-9b87-4992-b680-1ebc2a655980">
-                <graphicalData x="701" y="36" width="266" height="283"/>
-                <properties>
-                    <property name="updated"/>
-                    <property name=";INDEX" value="0"/>
-                    <property name="tracking:enable-default-events" value="false"/>
-                    <property-collection name="f7eeba37-2401-4e82-9fc8-c26fd86f2bb3">
-                        <property name="choice.expression" value="notfound"/>
-                    </property-collection>
-                    <property-collection name="7e30ade1-00a7-4d1c-a3aa-87da4bfeb388">
-                        <property name="choice.expression" value="found"/>
-                    </property-collection>
-                </properties>
-                <description></description>
-                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="2bd61ea1-c16c-4a93-8bff-def002c98029">
-                    <properties>
-                        <property name="updated"/>
-                        <property name=";INDEX" value="0"/>
-                        <property name="tracking:enable-default-events" value="false"/>
-                        <property-collection name="f7eeba37-2401-4e82-9fc8-c26fd86f2bb3">
-                            <property name="choice.expression" value="notfound"/>
-                        </property-collection>
-                        <property-collection name="7e30ade1-00a7-4d1c-a3aa-87da4bfeb388">
-                            <property name="choice.expression" value="found"/>
-                        </property-collection>
-                    </properties>
-                    <description></description>
-                </pattern>
-                <compartment entity-id="d53e82b8-f204-4ff3-a207-877af20f4945">
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="7e30ade1-00a7-4d1c-a3aa-87da4bfeb388">
-                        <pattern name="contact VMS" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="89d222db-119b-405c-941e-549cd71f4612">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
-                            <properties>
-<property name="updated"/>
-<property name="name" value="contactWarehouse"/>
-                            </properties>
-                            <description></description>
-                        </pattern>
-                    </lane>
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="1ae29342-c972-4df7-8f9e-60edd038ed4a"/>
-                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="f7eeba37-2401-4e82-9fc8-c26fd86f2bb3">
-                        <pattern name="contact suppliers" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="be64b5ea-dc92-4770-8704-ce62a4dbe0cc">
-                            <graphicalData x="0" y="0" width="0" height="0"/>
-                            <properties>
-<property name="updated"/>
-<property name="name" value="contactSuppliers"/>
-                            </properties>
-                            <description></description>
-                        </pattern>
-                    </lane>
-                </compartment>
-            </splitter>
-            <pattern name="Collection Aggregator" type="http://www.mulesoft.org/schema/mule/core/collection-aggregator" entity-id="0050b0a7-9e51-4b52-9d61-eaf808e743f2">
-                <graphicalData x="1027" y="143" width="131" height="69"/>
-            </pattern>
-            <pattern name="Payement" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="f94900f8-13e0-48a8-a7b0-42b6263d9efa">
-                <graphicalData x="1218" y="143" width="68" height="69"/>
-                <properties>
-                    <property name="updated"/>
-                    <property name="name" value="payementModule"/>
-                </properties>
-                <description></description>
-            </pattern>
-        </lane>
-        <apikit>false</apikit>
-    </flow>
-    <flow SubFlow="true" name="checkInventory" entity-id="6a4450d3-5287-4453-85cb-13fe077ca2e8">
+    <flow SubFlow="false" name="misterGoodDealorder" entity-id="8c9d2251-a8db-4076-9949-55decefb334b">
         <properties>
             <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
             <property name="bussinessEventsLabel"/>
-            <property name="auxiliary;index" value="9"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="tracking:enable-default-events"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <multi-source index="0" name="Composite Source" type="http://www.mulesoft.org/schema/mule/core/composite-source" entity-id="Composite Source#1">
+                <graphicalData x="19" y="91" width="104" height="172"/>
+                <properties>
+                    <property name="auxiliary;index" value="2"/>
+                </properties>
+                <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
+                    <graphicalData x="0" y="0" width="0" height="0"/>
+                    <properties>
+                        <property name="port" value="8081"/>
+                        <property name="host" value="localhost"/>
+                        <property name="businessEventsLabel"/>
+                        <property name="followRedirects"/>
+                        <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                        <property name="keep-alive"/>
+                        <property name="contentType"/>
+                        <property name="disableTransportTransformer"/>
+                        <property name="password"/>
+                        <property name="exchange-pattern" value="request-response"/>
+                        <property name="tracking:enable-default-events"/>
+                        <property name="ref"/>
+                        <property name="transformer-refs"/>
+                        <property name="httpLabel"/>
+                        <property name="address"/>
+                        <property name="path"/>
+                        <property name="encoding"/>
+                        <property name="responseTransformer-refs"/>
+                        <property name="method"/>
+                        <property name="user"/>
+                        <property name="auxiliary;index" value="3"/>
+                        <property name="responseTimeout"/>
+                        <property name="mimeType"/>
+                        <property name="connector-ref"/>
+                    </properties>
+                </endpoint>
+                <endpoint direction="Inbound" message-exchange-pattern="OneWay" name="FTP" type="http://www.mulesoft.org/schema/mule/ee/ftp/endpoint" entity-id="FTP#1">
+                    <graphicalData x="0" y="0" width="0" height="0"/>
+                    <properties>
+                        <property name="port" value="21"/>
+                        <property name=""/>
+                        <property name="binary"/>
+                        <property name="host" value="localhost"/>
+                        <property name="businessEventsLabel"/>
+                        <property name="pollingFrequency"/>
+                        <property name="disableTransportTransformer"/>
+                        <property name="password"/>
+                        <property name="tracking:enable-default-events"/>
+                        <property name="exchange-pattern" value="one-way"/>
+                        <property name="ref"/>
+                        <property name="transformer-refs"/>
+                        <property name="address"/>
+                        <property name="encoding"/>
+                        <property name="path"/>
+                        <property name="passive"/>
+                        <property name="lll"/>
+                        <property name="user"/>
+                        <property name="outputPattern"/>
+                        <property name="auxiliary;index" value="4"/>
+                        <property name="mimeType"/>
+                        <property name="responseTimeout" value="10000"/>
+                        <property name="connector-ref"/>
+                    </properties>
+                </endpoint>
+            </multi-source>
+            <pattern name="receive new order" type="http://www.mulesoft.org/schema/mule/cxf/soapComponent" entity-id="SOAP#1">
+                <graphicalData x="322" y="143" width="107" height="69"/>
+                <properties>
+                    <property name="port" value=""/>
+                    <property name="wsdlLocation" value=""/>
+                    <property name="serviceClass" value=""/>
+                    <property name="DATABINDING" value=""/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/cxf/jaxws-service"/>
+                    <property name="configuration-ref" value=""/>
+                    <property name="namespace" value=""/>
+                    <property name="auxiliary;erased;DATABINDING" value="true"/>
+                    <property name="validationEnabled" value="false"/>
+                    <property name="updated"/>
+                    <property name="bindingId" value=""/>
+                    <property name="service" value=""/>
+                    <property name="mtomEnabled" value="false"/>
+                    <property name="soapVersion" value="1.1"/>
+                    <property name="enableMuleSoapHeaders" value="true"/>
+                    <property name="propertiesLabel" value=""/>
+                    <property name="auxiliary;index" value="5"/>
+                    <property-collection name="">
+                        <property name="auxiliary;erased;DATABINDING" value="true"/>
+                        <property name="DATABINDING" value=""/>
+                        <property name="propertiesLabel" value=""/>
+                    </property-collection>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/schemaLocations;225543926">
+                        <property name="isProcessed$$$$" value="true"/>
+                    </property-collection>
+                    <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-security-full;1758555541">
+                        <property name="isProcessed$$$$" value="true"/>
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-config;1359808402">
+                            <property name="isProcessed$$$$" value="true"/>
+                        </property-collection>
+                        <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/ws-custom-validator;853246080">
+                            <property name="isProcessed$$$$" value="true"/>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/bst-token-validator;566980317">
+<property name="isProcessed$$$$" value="true"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml1-token-validator;1068530815">
+<property name="isProcessed$$$$" value="true"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/saml2-token-validator;1539151491">
+<property name="isProcessed$$$$" value="true"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/signature-token-validator;1596431705">
+<property name="isProcessed$$$$" value="true"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/timestamp-token-validator;2078581122">
+<property name="isProcessed$$$$" value="true"/>
+                            </property-collection>
+                            <property-collection name="@http://www.mulesoft.org/schema/mule/cxf/username-token-validator;778841040">
+<property name="isProcessed$$$$" value="true"/>
+                            </property-collection>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <description></description>
+            </pattern>
+            <pattern name="Check inventory" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#1">
+                <graphicalData x="489" y="143" width="100" height="69"/>
+                <properties>
+                    <property name="name" value="checkInventory"/>
+                    <property name="auxiliary;index" value="6"/>
+                </properties>
+            </pattern>
+            <splitter index="7" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#1">
+                <graphicalData x="649" y="36" width="266" height="283"/>
+                <properties>
+                    <property name=";INDEX" value="7"/>
+                    <property-collection name="c7de5a8c-1537-4dd2-a94f-f1093efc9b7f">
+                        <property name="choice.expression" value="notfound"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="notfound"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="dbe79f64-ef32-41cd-90c8-3343ef361228">
+                        <property name="choice.expression" value="found"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="found"/>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#2">
+                    <properties>
+                        <property name=";INDEX" value="7"/>
+                        <property-collection name="c7de5a8c-1537-4dd2-a94f-f1093efc9b7f">
+                            <property name="choice.expression" value="notfound"/>
+                            <property-collection name="choice.attributes">
+<property name="expression" value="notfound"/>
+                            </property-collection>
+                        </property-collection>
+                        <property-collection name="dbe79f64-ef32-41cd-90c8-3343ef361228">
+                            <property name="choice.expression" value="found"/>
+                            <property-collection name="choice.attributes">
+<property name="expression" value="found"/>
+                            </property-collection>
+                        </property-collection>
+                    </properties>
+                </pattern>
+                <compartment entity-id="compartment#1">
+                    <lane hadOnlyOneElement="false" index="9" isChoiceOtherwiseLane="false" entity-id="dbe79f64-ef32-41cd-90c8-3343ef361228">
+                        <pattern name="contact VMS" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="name" value="contactWarehouse"/>
+<property name="auxiliary;index" value="9"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="11" isChoiceOtherwiseLane="false" entity-id="c7de5a8c-1537-4dd2-a94f-f1093efc9b7f">
+                        <pattern name="contact suppliers" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#3">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="name" value="contactSuppliers"/>
+<property name="auxiliary;index" value="11"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="178a53c8-1088-4907-be40-b8fb97985767"/>
+                </compartment>
+            </splitter>
+            <pattern name="Collection Aggregator" type="http://www.mulesoft.org/schema/mule/core/collection-aggregator" entity-id="Collection Aggregator#1">
+                <graphicalData x="975" y="143" width="131" height="69"/>
+                <properties>
+                    <property name="businessEventsLabel"/>
+                    <property name="failOnTimeout" value="true"/>
+                    <property name="storePrefix"/>
+                    <property name="auxiliary;index" value="12"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="timeout"/>
+                </properties>
+            </pattern>
+            <pattern name="Payement" type="http://www.mulesoft.org/schema/mule/core/flow-ref" entity-id="Flow Reference#4">
+                <graphicalData x="1166" y="143" width="68" height="69"/>
+                <properties>
+                    <property name="name" value="payementModule"/>
+                    <property name="auxiliary;index" value="13"/>
+                </properties>
+            </pattern>
+        </lane>
+        <apikit>false</apikit>
+    </flow>
+    <flow SubFlow="true" name="checkInventory" entity-id="92a54168-19a7-4b28-88a5-04e998eeb76c">
+        <properties>
+            <property name="processingStrategy"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="auxiliary;index" value="14"/>
             <property name="tracking:enable-default-events"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#2">
@@ -158,7 +232,7 @@
                     <property name="ignoreBadInput"/>
                     <property name="driverClass"/>
                     <property name="encoding"/>
-                    <property name="auxiliary;index" value="10"/>
+                    <property name="auxiliary;index" value="15"/>
                     <property name="mimeType"/>
                 </properties>
             </pattern>
@@ -166,7 +240,7 @@
                 <graphicalData x="0" y="0" width="0" height="0"/>
                 <properties>
                     <property name="class"/>
-                    <property name="auxiliary;index" value="11"/>
+                    <property name="auxiliary;index" value="16"/>
                 </properties>
             </pattern>
             <endpoint direction="Outbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#2">
@@ -192,7 +266,7 @@
                     <property name="responseTransformer-refs"/>
                     <property name="method" value="POST"/>
                     <property name="user"/>
-                    <property name="auxiliary;index" value="12"/>
+                    <property name="auxiliary;index" value="17"/>
                     <property name="responseTimeout"/>
                     <property name="mimeType"/>
                     <property name="connector-ref"/>
@@ -204,20 +278,19 @@
                     <property name="returnClass"/>
                     <property name="ignoreBadInput"/>
                     <property name="encoding"/>
-                    <property name="auxiliary;index" value="13"/>
+                    <property name="auxiliary;index" value="18"/>
                     <property name="mimeType"/>
                 </properties>
-                <description></description>
             </pattern>
         </lane>
         <apikit>false</apikit>
     </flow>
-    <flow SubFlow="true" name="contactWarehouse" entity-id="acd73fd1-52c0-47b6-9f3e-13f3246337cb">
+    <flow SubFlow="true" name="contactWarehouse" entity-id="47b160d9-be61-4108-9437-699b58c59e9a">
         <properties>
             <property name="processingStrategy"/>
             <property name="processingStrategy2"/>
             <property name="bussinessEventsLabel"/>
-            <property name="auxiliary;index" value="14"/>
+            <property name="auxiliary;index" value="19"/>
             <property name="tracking:enable-default-events"/>
         </properties>
         <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#3">
@@ -225,22 +298,28 @@
         </lane>
         <apikit>false</apikit>
     </flow>
-    <flow SubFlow="true" name="payementModule" entity-id="cf03d23c-6364-4a3d-9715-feea845da9c3">
+    <flow SubFlow="true" name="payementModule" entity-id="26ec4178-05c0-41d5-ae26-22d96a98a9db">
         <properties>
-            <property name="updated"/>
+            <property name="processingStrategy"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="auxiliary;index" value="20"/>
+            <property name="tracking:enable-default-events"/>
         </properties>
-        <description></description>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="78bae179-a96d-4bb9-9757-88b4a30de961">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#4">
             <graphicalData x="0" y="0" width="0" height="0"/>
         </lane>
         <apikit>false</apikit>
     </flow>
-    <flow SubFlow="true" name="contactSuppliers" entity-id="554b7b36-c00f-48e1-babf-51e30bd05466">
+    <flow SubFlow="true" name="contactSuppliers" entity-id="06a8e359-3153-408b-b500-f16f2dce66bf">
         <properties>
-            <property name="updated"/>
+            <property name="processingStrategy"/>
+            <property name="processingStrategy2"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="auxiliary;index" value="21"/>
+            <property name="tracking:enable-default-events"/>
         </properties>
-        <description></description>
-        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="955ff34f-d6aa-44c4-b893-3862daf19820">
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#5">
             <graphicalData x="0" y="0" width="0" height="0"/>
         </lane>
         <apikit>false</apikit>

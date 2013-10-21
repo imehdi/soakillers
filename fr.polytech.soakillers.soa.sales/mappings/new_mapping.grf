@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><Graph author="HP" created="Mon Oct 21 14:57:28 CEST 2013" guiVersion="3.4.0.P" id="1382368482463" licenseCode="Unlicensed" licenseType="Unknown" modified="Mon Oct 21 14:57:28 CEST 2013" modifiedBy="HP" name="new_mapping_grf" preview-file="${Project_Home}/data/data.csv" revision="1.0" showComponentDetails="false">
+<Global>
+<Metadata __index="0" __referenceCounter="1" __sourcePath="{}/object" _dataStructure="OBJECT" _id="__id" _type="Output" id="abec57f7-91ae-4f37-8ca2-cfe15aeab97f">
+<Record fieldDelimiter="|" name="Customer" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field __artificialType="_id" __systemManaged="true" name="__id" type="string"/>
+<Field __index="0" __sourcePath="{}/object/address/city" containerType="SINGLE" label="city" name="city" type="string"/>
+<Field __index="1" __sourcePath="{}/object/address/country" containerType="SINGLE" label="country" name="country" type="string"/>
+<Field __index="2" __sourcePath="{}/object/address/idAddress" containerType="SINGLE" label="idAddress" name="idAddress" type="integer"/>
+<Field __index="3" __sourcePath="{}/object/address/number" containerType="SINGLE" label="number" name="number" type="integer"/>
+<Field __index="4" __sourcePath="{}/object/address/streetName" containerType="SINGLE" label="streetName" name="streetName" type="string"/>
+<Field __index="5" __sourcePath="{}/object/address/town" containerType="SINGLE" label="town" name="town" type="string"/>
+<Field __index="6" __sourcePath="{}/object/customerAge" containerType="SINGLE" label="customerAge" name="customerAge" type="integer"/>
+<Field __index="7" __sourcePath="{}/object/customerGender" containerType="SINGLE" label="customerGender" name="customerGender" type="integer"/>
+<Field __index="8" __sourcePath="{}/object/customerId" containerType="SINGLE" label="customerId" name="customerId" type="number"/>
+<Field __index="9" __sourcePath="{}/object/customerLastname" containerType="SINGLE" label="customerLastname" name="customerLastname" type="string"/>
+<Field __index="10" __sourcePath="{}/object/customerName" containerType="SINGLE" label="customerName" name="customerName" type="string"/>
+</Record>
+</Metadata>
+<Metadata __referenceCounter="1" _dataStructure="SINGLE_DIMENSIONAL_COLLECTION" _type="Input" id="6a6024ad-f2be-4857-a35d-e761bc41bbf4">
+<Record fieldDelimiter="," name="data" recordDelimiter="\n\\|\r\n\\|\r" type="delimited">
+<Field containerType="SINGLE" label="Palomba" name="Palomba" size="10" type="string"/>
+<Field containerType="SINGLE" label="Adrien" name="Adrien" size="10" type="string"/>
+<Field containerType="SINGLE" label="1" name="_1" size="10" type="string"/>
+<Field containerType="SINGLE" label="2" name="_2" size="10" type="string"/>
+<Field containerType="SINGLE" eofAsDelimiter="true" label="5" name="_5" size="10" type="string"/>
+<Field __artificialType="_id" auto_filling="global_row_count" name="__id" type="long"/>
+</Record>
+</Metadata>
+<Dictionary>
+<Entry id="DictionaryEntry0" input="true" name="inputPayload" output="false" type="object"/>
+<Entry id="DictionaryEntry1" input="false" name="outputPayload" output="true" type="object"/>
+</Dictionary>
+</Global>
+<Phase number="0">
+<Node enabled="enabled" fileURL="dict:outputPayload" guiName="Pojo WRITER" guiX="900" guiY="20" id="BEAN_WRITER0" type="BEAN_WRITER">
+<attr name="mapping"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<object xmlns:clover="http://www.cloveretl.com/ns/xmlmapping" clover:inPort="0">
+  <address>
+    <city>$0.city</city>
+    <country>$0.country</country>
+    <idAddress>$0.idAddress</idAddress>
+    <number>$0.number</number>
+    <streetName>$0.streetName</streetName>
+    <town>$0.town</town>
+  </address>
+  <customerAge>$0.customerAge</customerAge>
+  <customerGender>$0.customerGender</customerGender>
+  <customerId>$0.customerId</customerId>
+  <customerLastname>$0.customerLastname</customerLastname>
+  <customerName>$0.customerName</customerName>
+</object>]]></attr>
+<attr name="_data_format"><![CDATA[JAVA]]></attr>
+<attr name="schema"><![CDATA[<?xml version="1.0" encoding="UTF-8"?><schema-object>
+  <typed-object-ref type-ref="fr.polytech.soakillers.soa.misterGoodDeal.teamForceClient.Customer"/>
+  <typed-object type="int"/>
+  <typed-object type="java.lang.String"/>
+  <typed-object type="double"/>
+  <typed-object type="fr.polytech.soakillers.soa.misterGoodDeal.teamForceClient.Address">
+    <typed-object-ref name="city" type-ref="java.lang.String"/>
+    <typed-object-ref name="country" type-ref="java.lang.String"/>
+    <typed-object-ref name="idAddress" type-ref="int"/>
+    <typed-object-ref name="number" type-ref="int"/>
+    <typed-object-ref name="streetName" type-ref="java.lang.String"/>
+    <typed-object-ref name="town" type-ref="java.lang.String"/>
+  </typed-object>
+  <typed-object type="fr.polytech.soakillers.soa.misterGoodDeal.teamForceClient.Customer">
+    <typed-object-ref name="address" type-ref="fr.polytech.soakillers.soa.misterGoodDeal.teamForceClient.Address"/>
+    <typed-object-ref name="customerAge" type-ref="int"/>
+    <typed-object-ref name="customerGender" type-ref="int"/>
+    <typed-object-ref name="customerId" type-ref="double"/>
+    <typed-object-ref name="customerLastname" type-ref="java.lang.String"/>
+    <typed-object-ref name="customerName" type-ref="java.lang.String"/>
+  </typed-object>
+</schema-object>
+]]></attr>
+</Node>
+<Node charset="UTF-8" enabled="enabled" fileURL="dict:inputPayload" guiName="CSV READER" guiX="20" guiY="20" id="DATA_READER0" quotedStrings="true" skipRows="1" trim="true" type="DATA_READER">
+<attr name="_data_format"><![CDATA[CSV]]></attr>
+<attr name="__dataSourceDefinition"><![CDATA[${Project_Home}/data/data.csv]]></attr>
+</Node>
+<Node enabled="enabled" guiName="Foreach 'data' -&gt; 'object'" guiX="460" guiY="20" id="FOREACH_DATA_OBJECT" transformClass="com.mulesoft.datamapper.transform.MelRecordTransform" type="REFORMAT">
+<attr name="melScript"><![CDATA[//MEL
+//START -> DO NOT REMOVE
+output.__id = (isnull(input.__id) ? null : num2str(input.__id));
+//END -> DO NOT REMOVE
+output.customerLastname = input.Palomba;
+output.customerName = input.Adrien;]]></attr>
+</Node>
+<Edge debugMode="true" fromNode="DATA_READER0:0" guiBendpoints="" id="Edge0" inPort="Port 0 (in)" metadata="6a6024ad-f2be-4857-a35d-e761bc41bbf4" outPort="Port 0 (output)" toNode="FOREACH_DATA_OBJECT:0"/>
+<Edge debugMode="true" fromNode="FOREACH_DATA_OBJECT:0" guiBendpoints="" id="Edge1" inPort="Port 0 (in)" metadata="abec57f7-91ae-4f37-8ca2-cfe15aeab97f" outPort="Port 0 (out)" toNode="BEAN_WRITER0:0"/>
+</Phase>
+</Graph>
