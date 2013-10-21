@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ftp="http://www.mulesoft.org/schema/mule/ee/ftp" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:cxf="http://www.mulesoft.org/schema/mule/cxf" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/cxf http://www.mulesoft.org/schema/mule/cxf/current/mule-cxf.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/ee/ftp http://www.mulesoft.org/schema/mule/ee/ftp/current/mule-ftp-ee.xsd">
+    <flow name="misterGoodDealorder" doc:name="misterGoodDealorder">
+        <composite-source doc:name="Composite Source">
+            <http:inbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" doc:name="HTTP"/>
+            <ftp:inbound-endpoint host="localhost" port="21" responseTimeout="10000" doc:name="FTP"/>
+        </composite-source>
+        <cxf:jaxws-service doc:name="receive new order"/>
+        <flow-ref name="checkInventory" doc:name="Check inventory"/>
+        <choice doc:name="Choice">
+            <when expression="found">
+                <flow-ref name="contactWarehouse" doc:name="contact VMS"/>
+            </when>
+            <when expression="notfound">
+                <flow-ref name="contactSuppliers" doc:name="contact suppliers"/>
+            </when>
+        </choice>
+        <collection-aggregator failOnTimeout="true" doc:name="Collection Aggregator"/>
+        <flow-ref name="payementModule" doc:name="Payement"/>
+    </flow>
+    <sub-flow name="checkInventory" doc:name="checkInventory">
+        <mulexml:xml-to-object-transformer doc:name="XML to Object"/>
+        <custom-filter doc:name="Extract products"/>
+        <http:outbound-endpoint exchange-pattern="request-response" host="localhost" port="8081" method="POST" doc:name="HTTP"/>
+        <http:http-response-to-string-transformer doc:name="HTTP Response to String"/>
+    </sub-flow>
+    <sub-flow name="contactWarehouse" doc:name="contactWarehouse"/>
+    <sub-flow name="payementModule" doc:name="payementModule"/>
+    <sub-flow name="contactSuppliers" doc:name="contactSuppliers"/>
+</mule>
